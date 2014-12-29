@@ -1,0 +1,40 @@
+{
+    "name": "circleEye",
+    "main": "index.js",
+    "version": "0.1.0",
+    "description": "A tiny, free Javascript tool for visualizing cron data.",
+    "keywords": [
+        "visualization",
+        "cron"
+    ],
+    "author": {
+        "name": "Yanpeng Lin",
+        "url": "https://github.com/kylelin/circleEye"       
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kylelin/circleEye"    
+    },
+    "browserify": "ceye.js",
+    "dependencies": {
+        "jsdom": "1.3.0",
+        "d3": "3.4.13"
+    },
+    "devDependencies": {
+        "smash": "~0.0.12",
+        "uglify-js": "2.4.0",
+        "vows": "0.7.0",    
+        "jsdom": "0.5.7",
+        "chai": "*",
+        "contextify": "0.1.9"
+    },
+    "scripts": {
+        "test": "vows --spec; echo"
+    },
+    "licenses": [
+        {
+            "type": "BSD",
+            "url": "https://github.com/kylelin/circleEye/blob/master/LICENSE"    
+        }
+    ]
+}

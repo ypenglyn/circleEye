@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>circle eye: example</title>
+        <style type="text/css">
+            body{
+                height: 100%;
+            }
+            .chart {
+                margin-left:5%;
+                display: block;
+                margin-top: 5%;
+            }
+            .x.axis line, .x.axis path {
+                fill: none;
+                stroke: #000;
+            }
+            text {
+                font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+            div.tooltip {
+                position: absolute;
+                text-align: center;
+                width: 200px;
+                height: 18px;
+                padding: 8px;
+                font: 10px sans-serif;
+                background: #000;
+                border: solid 1px #aaa;
+                border-radius: 8px;
+                pointer-events: none;
+                color: red;
+            }
+        </style>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="../ceye.js"></script>
+    </head>
+    <body><center>
+        <textarea rows="4" cols="50" id="cron">0 0 * * * test&#13* 10 1-5 1,2,3 * example go go go</textarea>
+        <input type="submit" value="draw" id="draw"/>
+        </center>
+    </body>
+    <script type="text/javascript">
+        $('#draw').click(function(){
+            d3.select("svg").remove();
+            var cron = $('#cron').val();
+            var circle = ceye.circle;
+            var util = new ceye.util();
+
+            var parser = ceye.parser(util, circle);
+            console.log(parser.parse(cron));
+
+            var draw = ceye.draw(1024,800, 800, 120, {top:25, left:60, right:25, bottom:25});
+            var chart = draw.init();
+            draw.draw(parser.parse(cron));
+        });
+    </script>
+</html>
