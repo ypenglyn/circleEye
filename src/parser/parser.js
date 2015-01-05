@@ -15,6 +15,10 @@ ceye.parser = function(util, circle){
         return result;
     }
 
+    function isVarDefine(line){
+        return line.match(".*=.*")? false: true;
+    }
+
     function isValidLine(line){
         return (
                 line.toUpperCase().indexOf('MAILTO') !== 0
@@ -22,6 +26,7 @@ ceye.parser = function(util, circle){
                 && line.toUpperCase().indexOf('SHELL') !== 0
                 && line.toUpperCase().indexOf('HOME') !== 0
                 && line.toUpperCase().indexOf('LOGNAME') !== 0
+                && isVarDefine(line)
                 && line.length > 0
         );
     }

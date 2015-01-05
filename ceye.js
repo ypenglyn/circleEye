@@ -27,8 +27,11 @@
       }
       return result;
     }
+    function isVarDefine(line) {
+      return line.match(".*=.*") ? false : true;
+    }
     function isValidLine(line) {
-      return line.toUpperCase().indexOf("MAILTO") !== 0 && line.toUpperCase().indexOf("PATH") !== 0 && line.toUpperCase().indexOf("SHELL") !== 0 && line.toUpperCase().indexOf("HOME") !== 0 && line.toUpperCase().indexOf("LOGNAME") !== 0 && line.length > 0;
+      return line.toUpperCase().indexOf("MAILTO") !== 0 && line.toUpperCase().indexOf("PATH") !== 0 && line.toUpperCase().indexOf("SHELL") !== 0 && line.toUpperCase().indexOf("HOME") !== 0 && line.toUpperCase().indexOf("LOGNAME") !== 0 && isVarDefine(line) && line.length > 0;
     }
     function getCollection(value) {
       try {
