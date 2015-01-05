@@ -481,8 +481,10 @@
         g0.style("opacity", 1).transition().duration(500).delay(2e3).style("opacity", 0);
         g2.style("opacity", .2).transition().duration(1e3).delay(2e3).style("opacity", 1);
         g0.select("circle").transition().delay(2e3).remove();
+      }).on("mouseout", tipout).on("mouseover", function() {
+        var d = this.__data__;
         tipup(d);
-      }).on("mouseout", tipout);
+      });
       g5.append("g").attr("class", "x axis").attr("transform", "translate(0," + .5 * lh + ")").call(x5axis);
       g4.append("g").attr("class", "x axis").attr("transform", "translate(0," + .5 * lh + ")").call(x4axis);
       g3.append("g").attr("class", "x axis").attr("transform", "translate(0," + .5 * lh + ")").call(x3axis);

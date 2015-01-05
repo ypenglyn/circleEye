@@ -209,9 +209,13 @@ ceye.draw = function(gw,gh,lw,lh,margin){
                 g0.style("opacity",1).transition().duration(500).delay(2000).style("opacity",0);
                 g2.style("opacity",0.2).transition().duration(1000).delay(2000).style("opacity",1);
                 g0.select("circle").transition().delay(2000).remove();
-                tipup(d);
+                //tipup(d);
             })
-            .on("mouseout",tipout);
+            .on("mouseout",tipout)
+            .on("mouseover", function(){
+                var d = this.__data__;
+                tipup(d);
+            });
 
         g5.append("g").attr("class","x axis").attr("transform", "translate(0,"+(0.5*lh)+")").call(x5axis);
         g4.append("g").attr("class","x axis").attr("transform", "translate(0,"+(0.5*lh)+")").call(x4axis);
