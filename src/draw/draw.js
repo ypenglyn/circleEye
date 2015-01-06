@@ -93,7 +93,7 @@ ceye.draw = function(gw,gh,lw,lh,margin){
     function tipup(d){
         //var d = this.__data__;
         //var contents = '';
-        var ctx_size = 50;
+        var ctx_size = 75;
         if(d.cmd.length > ctx_size){
             contents = d.cmd.substring(1,ctx_size) + "..."; 
         }else{
@@ -208,7 +208,7 @@ ceye.draw = function(gw,gh,lw,lh,margin){
                 g0.style("opacity",0).transition().duration(500).style("opacity",1);
                 g0.style("opacity",1).transition().duration(500).delay(2000).style("opacity",0);
                 g2.style("opacity",0.2).transition().duration(1000).delay(2000).style("opacity",1);
-                g0.select("circle").transition().delay(2000).remove();
+                g0.selectAll("circle").transition().delay(2000).remove();
                 //tipup(d);
             })
             .on("mouseout",tipout)
