@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>circle eye: example</title>
+        <style type="text/css">
+            body{
+                height: 100%;
+            }
+            .chart {
+                margin-left:5%;
+                display: block;
+                margin-top: 5%;
+            }
+            .x.axis line, .x.axis path {
+                fill: none;
+                stroke: #000;
+            }
+            text {
+                font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+            div.tooltip {
+                position: absolute;
+                width: 200px;
+                height: 28px;
+                padding: 2px;
+                font: 10px sans-serif;
+                background: #000;
+                border: solid 1px #aaa;
+                border-radius: 5px;
+                pointer-events: none;
+                color: white;
+            }
+        </style>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="../ceye.js"></script>
+    </head>
+    <body><center>
+            <textarea rows="4" cols="50" id="cron">0 0 * * * test&#13* 10 1-5 1,2,3 * example go go go</textarea>
+            <input type="submit" value="draw" id="draw"/>
+        </center>
+        <center>
+            <input type="text" cols="50" id="keywords"/>
+            <input type="submit" value="filter" id="filter"/>
+        </center>
+    </body>
+    <script type="text/javascript">
+        $('#draw').click(function(){
+            d3.select("svg").remove();
+            var cron = $('#cron').val();
+            var circle = ceye.circle;
+            var util = new ceye.util();
+            var parser = ceye.parser(util, circle);
+            var draw = ceye.draw(1024,800, 800, 120, {top:25, left:60, right:25, bottom:25});
+            var chart = draw.init();
+            var raw_data = parser.parse(cron);
+            draw.draw(raw_data);
+            });
+
+        $('#filter').click(function(){
+            d3.select("svg").remove();
+            var filtered_data = [];
+            var regex = $('#keywords').val();
+            var cron = $('#cron').val();
+            var circle = ceye.circle;
+            var util = new ceye.util();
+            var parser = ceye.parser(util, circle);
+            var draw = ceye.draw(1024,800, 800, 120, {top:25, left:60, right:25, bottom:25});
+            var chart = draw.init();
+            var raw_data = parser.parse(cron);
+            for(var i = 0; i < raw_data.length; i++){
+                if(raw_data[i]['cmd'].indexOf(regex) > -1){
+                    filtered_data.push(raw_data[i]);
+                }
+            }
+            draw.draw(filtered_data);
+        });
+
+    </script>
+</html>
