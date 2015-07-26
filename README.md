@@ -1,6 +1,8 @@
 # Cron Visualization Tool (circleEye)
 **ceye.js** is a JavaScript tool for visualizing cron based on D3.
 
+![example image][example_png]
+
 ### Version
 0.1.0
 
@@ -32,3 +34,4 @@ details please refer to [example]
 
 [github d3]: https://github.com/mbostock/d3
 [example]: ./example/example_1.html
+[example_png]:example.png
